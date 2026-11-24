@@ -6,7 +6,7 @@ import streamlit as st
 from prioritizer import (get_model, reference_data, COMPONENTS, DISCLAIMER, CLUSTER_ADVICE,
                          THRESH_HIGH, THRESH_MID)
 
-st.set_page_config(page_title="IJAH Analytics", page_icon="🌿", layout="wide")
+st.set_page_config(page_title="IJAH Analytics", page_icon="🌿", layout="wide", initial_sidebar_state="expanded")
 
 # ---------- palet & teks ----------
 LABEL_COLOR = {"Tinggi": "#2E7D32", "Sedang": "#F9A825", "Rendah": "#C62828"}
@@ -47,13 +47,18 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 h1,h2,h3,h4,p,li,label,.hero,.mcard,.pcard,.step,.tip,.brand,.brand-sub{font-family:'Poppins',sans-serif;}
 .stApp{background:linear-gradient(180deg,#F4FAF3 0%,#FFFFFF 40%);}
-[data-testid="stToolbar"],footer,#MainMenu{display:none !important;}
+[data-testid="stToolbarActions"],[data-testid="stAppDeployButton"],[data-testid="stMainMenu"],footer,#MainMenu{display:none !important;}
 header[data-testid="stHeader"]{background:transparent;}
 .block-container{padding-top:1.5rem;max-width:1250px;}
 
 /* ===== Sidebar ===== */
-section[data-testid="stSidebar"]{width:320px !important;min-width:320px !important;
-  background:linear-gradient(180deg,#1B5E20 0%,#2E7D32 55%,#43A047 100%);}
+section[data-testid="stSidebar"]{background:linear-gradient(180deg,#1B5E20 0%,#2E7D32 55%,#43A047 100%);}
+@media (min-width:992px){section[data-testid="stSidebar"][aria-expanded="true"]{width:320px !important;min-width:320px !important;}}
+/* tombol buka sidebar selalu terlihat */
+[data-testid="stExpandSidebarButton"],[data-testid="collapsedControl"],[data-testid="stSidebarCollapsedControl"]{
+  display:flex !important;visibility:visible !important;background:#2E7D32;border-radius:12px;padding:4px;margin:8px;z-index:999999;}
+[data-testid="stExpandSidebarButton"] *,[data-testid="collapsedControl"] *,[data-testid="stSidebarCollapsedControl"] *{color:#fff !important;fill:#fff !important;}
+[data-testid="stSidebarCollapseButton"] *{color:#fff !important;}
 section[data-testid="stSidebar"] *{color:#FFFFFF;}
 section[data-testid="stSidebar"] .brand{font-size:2rem;font-weight:800;line-height:1.1;margin:8px 0 2px 0;}
 section[data-testid="stSidebar"] .brand-sub{font-size:.95rem;opacity:.9;margin-bottom:22px;}
